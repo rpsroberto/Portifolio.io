@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roberto Pereira de Sousa | QA Portfólio</title>
+  <style>
+    :root {
+      --ink: #17202a;
+      --muted: #627084;
+      --line: #d7e1ec;
+      --blue: #145da0;
+      --blue-deep: #0b355f;
+      --green: #0f766e;
+      --amber: #b76e1f;
+      --bg: #f5f7fa;
+      --panel: #ffffff;
+      --soft: #edf5fb;
+      --navy: #102a43;
+      --shadow: 0 18px 48px rgba(16, 42, 67, .10);
+      --shadow-soft: 0 10px 28px rgba(16, 42, 67, .07);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, #f8fbfd 0, var(--bg) 420px, #ffffff 100%);
+      font-family: Inter, "Segoe UI", Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .shell {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, .92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+    nav {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: .01em;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 14px;
+    }
+    .nav-links a {
+      color: #324152;
+      font-weight: 600;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .hero {
+      padding: 64px 0 38px;
+      background:
+        linear-gradient(135deg, rgba(20, 93, 160, .13), rgba(15, 118, 110, .10) 46%, rgba(183, 110, 31, .08)),
+        #ffffff;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      align-items: center;
+      gap: 34px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      color: var(--blue-deep);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: var(--green);
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1;
+      letter-spacing: 0;
+      max-width: 800px;
+    }
+    .headline {
+      margin: 0 0 18px;
+      max-width: 840px;
+      color: var(--blue-deep);
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .intro {
+      max-width: 850px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 16px;
+      border: 1px solid var(--blue);
+      border-radius: 6px;
+      background: linear-gradient(180deg, #176bb8, var(--blue));
+      color: #fff;
+      font-weight: 700;
+      box-shadow: 0 10px 22px rgba(20, 93, 160, .18);
+    }
+    .button.secondary {
+      background: #fff;
+      color: var(--blue);
+      box-shadow: none;
+    }
+    .button:hover {
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+    .profile-panel {
+      position: relative;
+      overflow: hidden;
+      background: rgba(255, 255, 255, .90);
+      border: 1px solid rgba(215, 225, 236, .96);
+      border-radius: 8px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+    .profile-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue), var(--green), var(--amber));
+    }
+    .avatar {
+      width: 100%;
+      height: 210px;
+      border-radius: 8px;
+      display: block;
+      object-fit: cover;
+      object-position: center 34%;
+      margin-bottom: 14px;
+      border: 3px solid #fff;
+      box-shadow: 0 12px 28px rgba(18, 38, 63, .18);
+    }
+    .profile-panel strong {
+      display: block;
+      font-size: 18px;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    .profile-panel p {
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .stat {
+      background: rgba(255, 255, 255, .78);
+      border: 1px solid rgba(217, 226, 236, .92);
+      border-radius: 8px;
+      padding: 14px;
+      box-shadow: var(--shadow-soft);
+    }
+    .stat strong {
+      display: block;
+      color: var(--blue-deep);
+      font-size: 24px;
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    section {
+      padding: 46px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    section:nth-of-type(even) { background: #fff; }
+    h2 {
+      margin: 0 0 14px;
+      font-size: 25px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+    h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+    p { margin: 0 0 12px; }
+    .muted { color: var(--muted); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      box-shadow: var(--shadow-soft);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(20, 93, 160, .28);
+      box-shadow: var(--shadow);
+    }
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+    .section-head h2 { margin-bottom: 0; }
+    .section-head p {
+      max-width: 520px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .meta {
+      color: var(--green);
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 10px;
+    }
+    .tag {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: #253242;
+      padding: 4px 9px;
+      font-size: 13px;
+    }
+    .tag.featured {
+      color: var(--blue-deep);
+      border-color: rgba(20, 93, 160, .3);
+      background: var(--soft);
+      font-weight: 700;
+    }
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 14px;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 12px;
+      bottom: 12px;
+      width: 2px;
+      background: var(--line);
+    }
+    .timeline .card {
+      margin-left: 32px;
+      position: relative;
+    }
+    .timeline .card::before {
+      content: "";
+      position: absolute;
+      left: -28px;
+      top: 22px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--green);
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 1px var(--line);
+    }
+    .timeline .card:first-child::before {
+      background: var(--blue);
+    }
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 8px;
+      font-weight: 800;
+    }
+    .project-link::after {
+      content: ">";
+      margin-left: 7px;
+    }
+    .contact-panel {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: center;
+      background: linear-gradient(135deg, #102a43, #0b355f 58%, #0f766e);
+      color: #fff;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .contact-panel h2,
+    .contact-panel p { color: #fff; }
+    .contact-panel a { color: #b7e4ff; }
+    .contact-list {
+      display: grid;
+      gap: 8px;
+      color: #d8e6f3;
+    }
+    ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+    li { margin-bottom: 6px; }
+    footer {
+      padding: 24px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    @media (max-width: 820px) {
+      nav { align-items: flex-start; flex-direction: column; padding: 14px 0; }
+      .hero-layout, .grid, .cards, .contact-panel { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+      .section-head { align-items: flex-start; flex-direction: column; }
+      .hero { padding-top: 34px; }
+      .profile-panel { max-width: 360px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="shell">
+      <div class="brand">Roberto Pereira de Sousa</div>
+      <div class="nav-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#experiência">Experiência</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#formacao">Formação</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="shell">
+        <div class="hero-layout">
+          <div>
+            <div class="eyebrow">Portfólio profissional</div>
+            <h1>QA e Qualidade de Software</h1>
+            <p class="headline">Testes manuais, testes de API, automação E2E, Jira, QAlity, Cypress, Playwright, Postman e Insomnia.</p>
+            <p class="intro">
+              Eu sou Roberto Pereira de Sousa, Analista de Testes em evolução contínua. Trabalho para transformar requisitos, regras de negócio e cenários de uso em validações claras, rastreáveis e confiáveis para reduzir falhas antes da entrega.
+            </p>
+            <div class="actions">
+              <a class="button" href="mailto:otaltorob@hotmail.com">Entrar em contato</a>
+              <a class="button secondary" href="curriculo-roberto-pereira-de-sousa-final.pdf">Ver currículo em PDF</a>
+              <a class="button secondary" href="https://github.com/rpsroberto">GitHub</a>
+            </div>
+          </div>
+          <aside class="profile-panel" aria-label="Resumo do perfil">
+            <img class="avatar" src="profile-photo.jpeg" alt="Foto de Roberto Pereira de Sousa">
+            <strong>Roberto Pereira de Sousa</strong>
+            <p>Analista de Testes em Juazeiro do Norte, CE, com foco em qualidade, automação e validação de sistemas.</p>
+            <div class="tags">
+              <span class="tag featured">QA</span>
+              <span class="tag featured">API</span>
+              <span class="tag featured">E2E</span>
+            </div>
+          </aside>
+        </div>
+        <div class="stats" aria-label="Indicadores profissionais">
+          <div class="stat"><strong>20</strong><span>cursos concluídos na Alura</span></div>
+          <div class="stat"><strong>277</strong><span>exercícios resolvidos</span></div>
+          <div class="stat"><strong>2026</strong><span>atuação como Analista de Testes</span></div>
+        </div>
+      </div>
+    </div>
+
+    <section id="sobre">
+      <div class="shell grid">
+        <div>
+          <h2>Sobre mim</h2>
+          <p>
+            Tenho foco em garantia da qualidade, testes manuais, plan test, test case, automação de testes E2E com Cypress e testes de API com Postman e Insomnia. Também trabalho com QAlity e Jira para organizar execução, evidência, rastreabilidade e reporte de defeitos.
+          </p>
+          <p>
+            Minha base combina tecnologia, ensino e atendimento ao cliente. A experiência como professor fortaleceu minha comunicação e clareza técnica; o atendimento em ambiente financeiro reforçou minha disciplina para resolver problemas com cuidado e foco no usuário.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Principais competências</h3>
+          <div class="tags">
+            <span class="tag featured">QAlity</span>
+            <span class="tag featured">Jira</span>
+            <span class="tag featured">Postman</span>
+            <span class="tag featured">Insomnia</span>
+            <span class="tag featured">Cypress</span>
+            <span class="tag featured">Playwright</span>
+            <span class="tag">Testes manuais</span>
+            <span class="tag">Testes de API</span>
+            <span class="tag">CI/CD</span>
+            <span class="tag">Scrum</span>
+            <span class="tag">Kanban</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiência">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Experiência</h2>
+          <p>Minha trajetória combina qualidade de software, ensino e atendimento, três frentes que reforçam análise, comunicação e foco no usuário.</p>
+        </div>
+        <div class="timeline">
+          <article class="card">
+            <div class="meta">fev. 2026 - atual</div>
+            <h3>Analista de Testes | Brisanet Telecomunicações</h3>
+            <p>Sou responsável técnico por garantir a qualidade de sistemas por meio de testes funcionais, manuais e automatizados. Crio e executo planos e casos de teste, reporto defeitos, valido requisitos e trabalho com times de desenvolvimento para assegurar estabilidade e confiabilidade.</p>
+          </article>
+          <article class="card">
+            <div class="meta">mai. 2023 - fev. 2026</div>
+            <h3>Professor de Matemática | Colégio Carinho da Mamãe</h3>
+            <p>Lecionei Matemática e Física para turmas do Ensino Fundamental II, desenvolvendo didática, paciência e capacidade de explicar conceitos complexos de forma simples e acessível.</p>
+          </article>
+          <article class="card">
+            <div class="meta">mai. 2021 - jun. 2023</div>
+            <h3>Atendente de Telemarketing | AeC</h3>
+            <p>Desenvolvi atendimento ao cliente, resolução de problemas e suporte digital. Também atuei como terceirizado em banco virtual, ganhando experiência com demandas financeiras e atendimento orientado a qualidade.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Projetos</h2>
+          <p>Projetos públicos que mostram prática com automação de testes, pipelines, APIs e organização de fluxo ágil.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <h3>Vollmecypress</h3>
+            <p>Automação E2E com Cypress para plataforma Vollmed, usando boas práticas de QA, faker.js, Mochawesome, Cypress Cloud e integração contínua.</p>
+            <a class="project-link" href="https://github.com/rpsroberto/vollmecypress">Ver no GitHub</a>
+          </article>
+          <article class="card">
+            <h3>Adopet API Tester</h3>
+            <p>Testes de API com Cypress cobrindo cadastro, login, massa de dados, autenticação JWT e cenários de erro.</p>
+            <a class="project-link" href="https://github.com/rpsroberto/cypress_01">Ver no GitHub</a>
+          </article>
+          <article class="card">
+            <h3>Pipeline Releases</h3>
+            <p>Pipeline de deploy automatizado com GitHub Actions e GitHub Pages acionado por tags de versão.</p>
+            <a class="project-link" href="https://github.com/rpsroberto/pipeline-releases">Ver no GitHub</a>
+          </article>
+          <article class="card">
+            <h3>Kanban Ágil com Docker</h3>
+            <p>Ambiente prático com Wekan, Docker Compose e MongoDB para simular Scrum, Kanban e gestão visual de fluxo.</p>
+            <a class="project-link" href="https://github.com/rpsroberto/agile-kanban-docker">Ver no GitHub</a>
+          </article>
+          <article class="card">
+            <h3>EcoTravel</h3>
+            <p>Projeto em JavaScript presente no meu GitHub público, parte do meu desenvolvimento prático em aplicações web.</p>
+            <a class="project-link" href="https://github.com/rpsroberto/EcoTravel">Ver no GitHub</a>
+          </article>
+          <article class="card">
+            <h3>Projetos de estudo</h3>
+            <p>Repositório público com estudos em Vue, Python, Laravel/Blade, APIs, Docker e fundamentos de programação.</p>
+            <a class="project-link" href="https://github.com/rpsroberto">Ver perfil</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="formacao">
+      <div class="shell grid">
+        <div>
+          <h2>Formação</h2>
+          <div class="card">
+            <h3>UNINASSAU</h3>
+            <p class="muted">Bacharelado em Gestão de Sistemas de Informação | ago. 2024 - dez. 2028</p>
+          </div>
+          <div class="card">
+            <h3>IFCE</h3>
+            <p class="muted">Tecnólogo em Edificações | jan. 2016 - dez. 2020</p>
+          </div>
+        </div>
+        <div>
+          <h2>Cursos e trilhas</h2>
+          <ul>
+            <li>Trilha Carreira QA: processos e automação de testes.</li>
+            <li>Quality Assurance: plano de testes e gestão de bugs.</li>
+            <li>Cypress, Playwright, Robot Framework e testes E2E.</li>
+            <li>GitHub Actions, CI/CD, Git e GitHub.</li>
+            <li>Kanban, Scrum, acessibilidade digital, SQL e MongoDB.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="shell">
+        <div class="contact-panel">
+          <div>
+            <h2>Contato</h2>
+            <p>Estou aberto a oportunidades e conversas sobre QA, testes manuais, automação, APIs e melhoria de qualidade em times de desenvolvimento.</p>
+          </div>
+          <div class="contact-list">
+            <span>Email: <a href="mailto:otaltorob@hotmail.com">otaltorob@hotmail.com</a></span>
+            <span>LinkedIn: <a href="https://www.linkedin.com/in/roberto-pereira-de-sousa-3576891b8">roberto-pereira-de-sousa</a></span>
+            <span>GitHub: <a href="https://github.com/rpsroberto">github.com/rpsroberto</a></span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">Portfólio criado a partir do export do LinkedIn, perfil Alura e GitHub público.</div>
+  </footer>
+</body>
+</html>
